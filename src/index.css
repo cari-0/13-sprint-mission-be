@@ -1,0 +1,118 @@
+.header-inner-logo-word {
+  color: #3692ff;
+  font-family: "ROKAF Sans";
+  font-size: 25.633px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.header-inner-menu-word {
+  color: var(--Secondary-600, #4b5563);
+  text-align: center;
+
+  /* pretendard/2lg-18px-bold */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 144.444% */
+}
+
+.header-login {
+  color: var(--Cool-Gray-100, #f3f4f6);
+
+  /* pretendard/lg-16px-semibold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+}
+.what-product {
+  color: var(--Secondary-900, #111827);
+
+  /* pretendard/xl-20px-bold */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 160% */
+}
+.footer-gray {
+  color: var(--Secondary-400, #9ca3af);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer-white {
+  color: var(--Secondary-200, #e5e7eb);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.product-name {
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/md-14px-medium */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 171.429% */
+}
+.product-price {
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/lg-16px-bold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 26px; /* 162.5% */
+}
+.product-heart-word {
+  color: var(--Secondary-600, #4b5563);
+
+  /* pretendard/xs-12px-medium */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 150% */
+}
+.search-word {
+  color: var(--Secondary-400, #9ca3af);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+}
+.search-btn-word {
+  color: var(--Cool-Gray-100, #f3f4f6);
+
+  /* pretendard/lg-16px-semibold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 162.5% */
+}
+.search-filter-word {
+  color: var(--Secondary-800, #1f2937);
+
+  /* pretendard/lg-16px-regular */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+}
