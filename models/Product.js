@@ -24,8 +24,6 @@ const productSchema = new mongoose.Schema(
 
     tags: {
       type: [String],
-      minLength: 1,
-      maxLength: 20,
       default: [],
     },
   },
