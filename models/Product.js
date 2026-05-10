@@ -2,23 +2,31 @@ import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
+    // id: {
+    //   type: String,
+    //   minimum: 1,
+    //   trim: true,
+    // },
     name: {
       type: String,
-      required: [true, "title 은 필수예요."],
-      trim: true,
+      minLength: 1,
+      maxLength: 20,
+      required: true,
     },
     description: {
       type: String,
-      default: false,
+      required: true,
     },
     price: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      required: true,
     },
 
     tags: {
-      type: String,
-      default: false,
+      type: [String],
+      minLength: 1,
+      maxLength: 20,
+      default: [],
     },
   },
   {
