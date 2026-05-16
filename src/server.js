@@ -1,5 +1,13 @@
-import express from 'express';
-import dotenv from 'dotenv';
+import express from "express";
+import dotenv from "dotenv";
+import {
+  createArticle,
+  deleteAritcle,
+  getArticle,
+  updateArticle,
+} from "./controller/article.controller.js";
+import dns from "dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 dotenv.config();
 
@@ -8,10 +16,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Todo API Server' });
-});
-
+app.post("/articles", createArticle);
+app.get("/articles", getArticle);
+app.patch("/articles/:id", updateArticle);
+app.delete("/articles/:id", deleteAritcle);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});​
+});

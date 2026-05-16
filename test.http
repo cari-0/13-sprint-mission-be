@@ -1,0 +1,23 @@
+### 생성
+POST http://localhost:3000/articles
+Content-Type: application/json
+
+{
+    "title": "테스트",
+    "content": "입니다"
+}
+
+### 조회
+GET http://localhost:3000/articles
+
+### 수정
+PATCH http://localhost:3000/articles/1
+Content-Type: application/json
+
+{
+    "title":" 이게",
+    "content": "수 정이 다"
+}
+
+### 삭제
+DELETE http://localhost:3000/articles/3

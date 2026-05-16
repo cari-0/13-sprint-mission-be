@@ -25,18 +25,6 @@ model Article {
   @@map("articles")
 }
 
-model Post {
-  id        Int           @id @default(autoincrement())
-  title     String
-  content   String
-  createdAt DateTime      @default(now()) @map("created_at")
-  updatedAt DateTime      @updatedAt @map("updated_at")
-  comments  PostComment[]
-
-  @@index([title, content, createdAt])
-  @@map("posts")
-}
-
 model ArticleComment {
   id        Int      @id @default(autoincrement())
   content   String
@@ -48,17 +36,4 @@ model ArticleComment {
 
   @@index([articleId, createdAt])
   @@map("article_comments")
-}
-
-model PostComment {
-  id        Int      @id @default(autoincrement())
-  content   String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-
-  postId Int
-  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
-
-  @@index([postId, createdAt])
-  @@map("post_comments")
 }
