@@ -1,23 +1,59 @@
+@baseUrl=http://localhost:3000
+
 ### 생성
-POST http://localhost:3000/articles
+POST {{baseUrl}}/articles
 Content-Type: application/json
 
 {
-    "title": "테스트",
-    "content": "입니다"
+    "title": "테스트2223",
+    "content": "입니다11"
 }
 
 ### 조회
-GET http://localhost:3000/articles
+GET {{baseUrl}}/articles
 
 ### 수정
-PATCH http://localhost:3000/articles/1
+PATCH {{baseUrl}}/articles/7
 Content-Type: application/json
 
 {
-    "title":" 이게",
-    "content": "수 정이 다"
+    "title":" 이zz게21",
+    "content": "수 정2 다"
 }
 
 ### 삭제
-DELETE http://localhost:3000/articles/3
+DELETE {{baseUrl}}/articles/3
+
+### 제한 조회
+GET {{baseUrl}}/article?page=1&limit=10
+
+### 필터 조회
+GET {{baseUrl}}/article?search=테스트
+
+### 차순 조회
+GET {{baseUrl}}/article?orderBy=recent
+
+### 댓글 작성
+POST {{baseUrl}}/articles/1/comments
+Content-Type: application/json
+
+{
+    "content": "이게 댓글이야"
+}
+
+### 댓글 조회
+GET {{baseUrl}}/articles/1/comments
+
+### 댓글 조회 다음
+GET {{baseUrl}}/articles/1/comments?limit=2
+
+### 댓글 수정
+PATCH {{baseUrl}}/article-comments/1
+Content-Type: application/json
+
+{
+    "content": "이게 수정이야 "
+}
+
+### 댓글삭제
+DELETE {{baseUrl}/article-comments/1

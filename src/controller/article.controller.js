@@ -9,12 +9,12 @@ export const createArticle = async (req, res) => {
     });
 
     res.status(201).json({
-      succes: true,
+      success: true,
       data: article,
     });
   } catch (error) {
     res.status(400).json({
-      succes: false,
+      success: false,
       message: error.message,
     });
   }
@@ -61,5 +61,69 @@ export const deleteAritcle = async (req, res) => {
         .json({ success: false, message: "찾을 수 없습니다" });
     }
     res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const getArticles = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, search = "", orderBy = "recent" } = req.query;
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+
+    const where = {
+      OR: [
+        {
+          title: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          content: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+      ],
+    };
+
+    const articles = await prisma.article.findMany({
+      where,
+
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        createdAt: true,
+      },
+
+      orderBy: {
+        createdAt: orderBy === "recent" ? "desc" : "asc",
+      },
+
+      skip,
+      take: parseInt(limit),
+    });
+
+    const totalCount = await prisma.article.count({
+      where,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: articles,
+
+      pagination: {
+        page: parseInt(page),
+        limit: parseInt(limit),
+        totalCount,
+        totalPages: Math.ceil(totalCount / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
