@@ -114,9 +114,18 @@ export const signIn = async (req, res) => {
         expiresIn: "1h",
       },
     );
+    // 5. refreshToken 발급
+    const refreshToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
 
-    return res.json({
+    // 6. 비밀번호 제거
+    const { encryptedPassword, ...userInfo } = user;
+
+    return res.status(200).json({
       accessToken,
+      refreshToken,
+      user: userInfo,
     });
   } catch (error) {
     console.error(error);

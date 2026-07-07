@@ -3,7 +3,7 @@ import prisma from "../../prisma/seed.js";
 export const getMe = async (req, res) => {
   const user = await prisma.user.findUnique({
     where: {
-      id: 1,
+      id: req.user.id,
     },
   });
 
