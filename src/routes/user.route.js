@@ -6,13 +6,14 @@ import {
   getMeProducts,
   getMeFavorites,
 } from "../controllers/user.controller.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 const userRouter = express.Router();
 
-userRouter.get("/me", getMe);
-userRouter.patch("/me", updateMe);
-userRouter.patch("/me/password", updateMePassword);
-userRouter.get("/me/products", getMeProducts);
-userRouter.get("/me/favorites", getMeFavorites);
+userRouter.get("/me", authMiddleware, getMe);
+userRouter.patch("/me", authMiddleware, updateMe);
+userRouter.patch("/me/password", authMiddleware, updateMePassword);
+userRouter.get("/me/products", authMiddleware, getMeProducts);
+userRouter.get("/me/favorites", authMiddleware, getMeFavorites);
 
 export default userRouter;
