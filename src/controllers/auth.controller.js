@@ -1,5 +1,6 @@
 import prisma from "../../prisma/seed.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const signUp = async (req, res) => {
   try {
@@ -70,5 +71,58 @@ export const signUp = async (req, res) => {
   }
 };
 
+export const signIn = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-export const 
+    // 1. 필수값 확인
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "이메일과 비밀번호를 입력해주세요.",
+      });
+    }
+
+    // 2. 사용자 조회
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "이메일 또는 비밀번호가 올바르지 않습니다.",
+      });
+    }
+
+    // 3. 비밀번호 확인
+    const isMatch = await bcrypt.compare(password, user.encryptedPassword);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        message: "이메일 또는 비밀번호가 올바르지 않습니다.",
+      });
+    }
+
+    // 4. JWT 발급
+    const accessToken = jwt.sign(
+      {
+        id: user.id,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      },
+    );
+
+    return res.json({
+      accessToken,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
