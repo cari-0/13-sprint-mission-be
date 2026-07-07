@@ -135,3 +135,42 @@ export const signIn = async (req, res) => {
     });
   }
 };
+
+export const refreshToken = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+
+    // 1. 필수값 확인
+    if (!refreshToken) {
+      return res.status(400).json({
+        message: "Refresh Token이 필요합니다.",
+      });
+    }
+
+    const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+    // 2. 사용자 조회
+    const user = await prisma.user.findUnique({
+      where: {
+        id: decoded.id,
+      },
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        message: "존재하지 않는 사용자입니다.",
+      });
+    }
+    // 3. 토큰 조회
+    const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    return res.json({
+      accessToken,
+    });
+  } catch (error) {
+    return res.status(401).json({
+      message: "유효하지 않은 토큰입니다.",
+    });
+  }
+};
