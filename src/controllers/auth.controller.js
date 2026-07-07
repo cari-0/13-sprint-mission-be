@@ -1,0 +1,74 @@
+import prisma from "../../prisma/seed.js";
+import bcrypt from "bcrypt";
+
+export const signUp = async (req, res) => {
+  try {
+    const { email, nickname, password, passwordConfirmation } = req.body;
+
+    // 1. 필수값 확인
+    if (!email || !nickname || !password || !passwordConfirmation) {
+      return res.status(400).json({
+        message: "필수 정보를 모두 입력해주세요.",
+      });
+    }
+
+    // 2. 비밀번호 확인
+    if (password !== passwordConfirmation) {
+      return res.status(400).json({
+        message: "비밀번호가 일치하지 않습니다.",
+      });
+    }
+
+    // 3. 이메일 중복 확인
+    const emailUser = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (emailUser) {
+      return res.status(409).json({
+        message: "이미 사용 중인 이메일입니다.",
+      });
+    }
+
+    // 4. 닉네임 중복 확인
+    const nicknameUser = await prisma.user.findUnique({
+      where: {
+        nickname,
+      },
+    });
+
+    if (nicknameUser) {
+      return res.status(409).json({
+        message: "이미 사용 중인 닉네임입니다.",
+      });
+    }
+
+    // 5. 비밀번호 암호화
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
+    // 6. 회원 생성
+    const user = await prisma.user.create({
+      data: {
+        email,
+        nickname,
+        encryptedPassword,
+      },
+    });
+
+    // 7. 비밀번호 제외
+    const { encryptedPassword: _, ...result } = user;
+
+    return res.status(201).json(result);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
+export const 

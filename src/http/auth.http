@@ -1,0 +1,20 @@
+### 회원가입
+POST http://localhost:3000/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "1ddas1@gamil.com",
+  "nickname": "a2태1현1",
+  "password": "12345678@",
+  "passwordConfirmation":"12345678@"
+}
+
+
+### 로그인
+POST http://localhost:3000/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "1ddas1@gamil.com",
+  "password": "12345678@"
+}
