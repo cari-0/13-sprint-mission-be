@@ -1,12 +1,15 @@
+@BASE_URL = http://localhost:3000
+@ACCESS_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA5ODg1LCJleHAiOjE3ODM0MTM0ODV9.YaQW3EbE36CO1JWsJ1w1GNg9l4wdlq1IrQHvOxmYBVk
+
 ### 내정보 조회
-GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA1ODMwLCJleHAiOjE3ODM0MDk0MzB9.9JwbFY2Pt0ZXHN_8_vcGtdAglFwdOiGfLlzKc6kInaU
+GET {{BASE_URL}}/users/me
+Authorization: Bearer {{ACCESS_TOKEN}}
 
 
 ### 프로필 사진 수정
-PATCH http://localhost:3000/users/me
+PATCH {{BASE_URL}}/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA1ODMwLCJleHAiOjE3ODM0MDk0MzB9.9JwbFY2Pt0ZXHN_8_vcGtdAglFwdOiGfLlzKc6kInaU
+Authorization: Bearer {{ACCESS_TOKEN}}
 
 {
   "image": "https://example.com/...1"
@@ -14,9 +17,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 
 
 ### 비밀번호 수정
-PATCH http://localhost:3000/users/me/password
+PATCH {{BASE_URL}}/users/me/password
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA1ODMwLCJleHAiOjE3ODM0MDk0MzB9.9JwbFY2Pt0ZXHN_8_vcGtdAglFwdOiGfLlzKc6kInaU
+Authorization: Bearer {{ACCESS_TOKEN}}
 
 {
   "passwordConfirmation": "123456789@",
@@ -25,10 +28,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 }
 
 ### 내 상품 조회
-GET http://localhost:3000/users/me/products?page=1&pageSize=10&keyword=
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA1ODMwLCJleHAiOjE3ODM0MDk0MzB9.9JwbFY2Pt0ZXHN_8_vcGtdAglFwdOiGfLlzKc6kInaU
+GET {{BASE_URL}}/users/me/products?page=1&pageSize=10&keyword=
+Authorization: Bearer {{ACCESS_TOKEN}}
 
 
 ### 
-GET http://localhost:3000/users/me/favorites?page=1&pageSize=10&keyword=
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzgzNDA1ODMwLCJleHAiOjE3ODM0MDk0MzB9.9JwbFY2Pt0ZXHN_8_vcGtdAglFwdOiGfLlzKc6kInaU
+GET {{BASE_URL}}/users/me/favorites?page=1&pageSize=10&keyword=
+Authorization: Bearer {{ACCESS_TOKEN}}

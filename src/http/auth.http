@@ -1,5 +1,7 @@
+@BASE_URL = http://localhost:3000
+
 ### 회원가입
-POST http://localhost:3000/auth/signUp
+POST {{BASE_URL}}/auth/signUp
 Content-Type: application/json
 
 {
@@ -11,16 +13,16 @@ Content-Type: application/json
 
 
 ### 로그인
-POST http://localhost:3000/auth/signIn
+POST {{BASE_URL}}/auth/signIn
 Content-Type: application/json
 
 {
   "email": "1ddas1@gamil.com",
-  "password": "12345678@"
+  "password": "123456789@"
 }
 
 ### 리프레쉬 토큰
-POST http://localhost:3000/auth/refresh-token
+POST {{BASE_URL}}/auth/refresh-token
 Content-Type: application/json
 
 {
